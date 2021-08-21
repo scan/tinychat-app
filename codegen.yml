@@ -1,0 +1,24 @@
+overwrite: true
+schema: 'http://localhost:8080/graphql'
+documents: 'graphql/**/*.graphql'
+generates:
+  src/api/schema.json:
+    plugins:
+      - introspection
+    config:
+      descriptions: false
+  src/api/generated.ts:
+    plugins:
+      - add:
+          content: '/* eslint-disable */'
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      immutableTypes: true
+      useTypeImports: true
+      maybeValue: T | undefined
+      scalars:
+        Time: Date
+        Token: string
+        Cursor: unknown

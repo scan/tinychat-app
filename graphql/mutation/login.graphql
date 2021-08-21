@@ -1,0 +1,3 @@
+mutation Login($username: String!, $password: String!) {
+  token: login(username: $username, serverPassword: $password)
+}
